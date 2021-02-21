@@ -4,7 +4,7 @@ import cors from 'cors'
 import knex from 'knex'
 import handleRegister from './controllers/register.js'
 import handleProfile from './controllers/profile.js'
-import handleImage from './controllers/image.js'
+import { handleImage, handleClarifaiApi } from './controllers/image.js'
 import handleSignIn from './controllers/signin.js'
 
 const app = express()
@@ -40,6 +40,10 @@ app.get('/profile/:id', (req, res) => {
 
 app.put('/image', (req, res) => {
   handleImage(req, res, db)
+})
+
+app.post('/imageurl', (req, res) => {
+  handleClarifaiApi(req, res)
 })
 
 app.listen('3001', () => {
